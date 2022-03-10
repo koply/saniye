@@ -1,0 +1,7 @@
+.idea/
+target/
+out/
+config.json
+data.dat
+*.iml
+backup/
