@@ -12,7 +12,7 @@ public class Main {
     public static final Logger log = Logger.getLogger("Bot");
 
     private static final File CONFIG_FILE = new File("./config.json");
-    public static final DataManager CONFIG = new DataManager(CONFIG_FILE, false);
+    public static final DataManager CONFIG = new DataManager(CONFIG_FILE, null, new String[]{"token", "activity"}, false);
 
     private static final File DATA_FILE = new File("./data.dat");
     public static final DataManager DATA = new DataManager(DATA_FILE, true);
@@ -22,18 +22,20 @@ public class Main {
     public static void main(String[] args) {
         if (CONFIG.readData() != 0) {
             System.out.println("Config file created. Fill the blank quotes...");
+            System.exit(30);
             return;
         }
 
-        var token = CONFIG.get("token").asString();
-        if (token.isBlank()) {
-            System.out.println("Blank token...");
+        var tokenval = CONFIG.get("token");
+        if (tokenval == null || tokenval.isNull()) {
+            System.out.println("Token not found...");
+            System.exit(30);
             return;
         }
 
         DATA.readData();
 
-        var botThread = new Thread(() -> bot.startBot(token));
+        var botThread = new Thread(() -> bot.startBot(tokenval.asString()));
         botThread.start();
 
         var sc = new Scanner(System.in);

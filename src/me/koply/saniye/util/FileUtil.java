@@ -32,6 +32,7 @@ public class FileUtil {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(file), StandardCharsets.UTF_8))) {
             writer.write(str);
+            writer.flush();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
