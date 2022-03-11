@@ -18,15 +18,15 @@ public class DataHelper {
     }
 
     public static JsonObject getUserVCData(JsonObject data, String guildID, String userID) {
-        var guildval = data.get(guildID);
-        if (isNull(guildval)) return null;
+        var guildJson = data.get(guildID);
+        if (isNull(guildJson)) return null;
 
-        var vcdataval = guildval.asObject().get("vcdata");
-        if (isNull(vcdataval)) return null;
+        var vcDataJson = guildJson.asObject().get("vcdata");
+        if (isNull(vcDataJson)) return null;
 
-        var userdataval = vcdataval.asObject().get(userID);
-        if (isNull(userdataval)) return null;
-        return userdataval.asObject();
+        var userDataJson = vcDataJson.asObject().get(userID);
+        if (isNull(userDataJson)) return null;
+        return userDataJson.asObject();
     }
 
 }
