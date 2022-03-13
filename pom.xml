@@ -16,6 +16,11 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <sourceDirectory>src/main/java</sourceDirectory>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>net.dv8tion</groupId>
@@ -26,7 +31,7 @@
         <dependency>
             <groupId>com.github.koply.KCommando</groupId>
             <artifactId>jda-integration</artifactId>
-            <version>kcommando5-d6f2ffc8a6-1</version>
+            <version>kcommando5-a8ac4aba01-1</version>
         </dependency>
 
         <dependency>
